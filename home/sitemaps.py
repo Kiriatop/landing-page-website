@@ -7,8 +7,7 @@ class StaticViewSitemap(Sitemap):
     changefreq = "weekly"
 
     def items(self):
-        # Вкажи name твого URL-маршруту з urls.py, наприклад 'home' або 'index'
-        return ['']
+        return ['home']
 
     def location(self, item):
         return reverse(item)
