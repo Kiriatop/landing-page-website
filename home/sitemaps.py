@@ -8,7 +8,7 @@ class StaticViewSitemap(Sitemap):
 
     def items(self):
         # Вкажи name твого URL-маршруту з urls.py, наприклад 'home' або 'index'
-        return ["home"]
+        return ['']
 
     def location(self, item):
         return reverse(item)
