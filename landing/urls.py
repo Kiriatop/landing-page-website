@@ -22,9 +22,14 @@ from home.sitemaps import StaticViewSitemap
 sitemaps = {
     "static": StaticViewSitemap,
 }
+def indexable_sitemap(request, sitemaps, **kwargs):
+    response = sitemap(request, sitemaps, **kwargs)
+    if "X-Robots-Tag" in response:
+        del response["X-Robots-Tag"]
+    return response
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path("sitemap.xml",sitemap,{"sitemaps": sitemaps},name="django.contrib.sitemaps.views.sitemap")
+    path("sitemap.xml",indexable_sitemap,{"sitemaps": sitemaps},name="django.contrib.sitemaps.views.sitemap")
 ]
